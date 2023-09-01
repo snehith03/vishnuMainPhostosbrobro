@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'8k reslistic portrait of @me as a young jedi, star wars revenge of the sith movie scene style, studio photography, looking to camera, centered uncropped, volumetric lighting, smiling, realistic, 35mm, expressive, iconic, 8k concept art, photorealistic'
+			'8k linkedin professional profile photo of @me in a suit with studio lighting, bokeh, corporate portrait headshot photograph best corporate photography photo winner, meticulous detail, hyperrealistic, centered uncropped symmetrical beautiful'
 	}
 	
 ];
