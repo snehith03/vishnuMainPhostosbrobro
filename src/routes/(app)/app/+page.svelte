@@ -75,7 +75,7 @@
 									height: 512,
 									resize: 'cover',
 									quality: 0.9,
-									strict: false,
+									strict: true,
 									error(error) {
 										showError(error);
 										reject();
