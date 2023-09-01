@@ -46,7 +46,7 @@ export const getRefinedInstanceClass = (instanceClass: string) => {
 export const replacePromptToken = (prompt: string, instanceClass: string) => {
 	const refinedPrompt = prompt.replaceAll(
 		'@me',
-		`${getRefinedInstanceClass(instanceClass)} ${PRIVATE_REPLICATE_INSTANCE_TOKEN}`
+		`${PRIVATE_REPLICATE_INSTANCE_TOKEN} ${getRefinedInstanceClass(instanceClass)}`
 	);
 
 	return refinedPrompt;
