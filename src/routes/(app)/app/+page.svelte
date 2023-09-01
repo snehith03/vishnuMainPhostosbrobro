@@ -74,7 +74,7 @@
 									width: 512,
 									height: 512,
 									resize: 'cover',
-									quality: 1,
+									quality: 0.9,
 									strict: false,
 									error(error) {
 										showError(error);
