@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'realistic closeup portrait of @me as a jedi , highly detailed, science fiction, looking into camera, centred uncropped, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
+			'realistic closeup portrait of @me as a male jedi , highly detailed, science fiction, looking into camera, centred uncropped, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
 	}
 	
 ];
