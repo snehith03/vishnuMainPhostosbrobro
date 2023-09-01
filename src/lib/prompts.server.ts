@@ -13,5 +13,5 @@ export const getRefinedInstanceClass = (instanceClass: string | null) => {
 };
 
 export function getReplacedPrompt(prompt: string, instanceClass: string | null) {
-	return prompt.replaceAll('@me', `${getRefinedInstanceClass(instanceClass)} ${getSubjectName()}`);
+	return prompt.replaceAll('@me', `${getSubjectName()} ${getRefinedInstanceClass(instanceClass)}`);
 }
