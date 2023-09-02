@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'8k portrait of @me, d & d, fantasy, intricate, elegant,, highly detailed, digital painting, artstation, concept art, matte, sharp focus, illustration, hearthstone, art by artgerm and greg rutkowski and alphonse mucha, 8k'
+			'closeup portrait of a @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws, Sharp focus, dslr photo, HD, UHD, 8K'
 	}
 	
 ];
