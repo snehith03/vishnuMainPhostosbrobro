@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'closeup portrait of @me as a indian cricket player, dynamic lighting, intense colors, wearing the iconic blue jersey, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws, Sharp focus, dslr photo, HD, UHD, 8K'
+			'realistic closeup face portrait of @me as a Indian wedding groom, highly detailed, looking straight into camera, wedding background, intricate details, wearing indian wedding dress, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
 	}
 	
 ];
