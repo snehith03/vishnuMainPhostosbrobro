@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'realistic highly detailed illustration closeup portrait of @me as cowgirl wearing black cowboy hat, looking straight into camera, dramatic wielding gun pose, original face, intricate, elegant, highly detailed, centered, digital painting, artstation, concept art, smooth, sharp focus, league of legends concept art, wlop'
+			'realistic highly detailed illustration closeup portrait of @me as cowgirl wearing black cowgirl hat, looking straight into camera, dramatic wielding gun pose, original face, intricate, elegant, highly detailed, centered, digital painting, artstation, concept art, smooth, sharp focus, league of legends concept art, wlop'
 	}
 	
 ];
