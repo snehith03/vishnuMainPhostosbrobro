@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'realistic closeup portrait of @me as a Indian wedding groom, highly detailed, looking straight into camera, wedding background, intricate details, wearing indian wedding dress, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
+			'realistic closeup portrait of @me in Indian wedding outfit, highly detailed, looking straight into camera, wedding background, intricate details, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
 	}
 	
 ];
