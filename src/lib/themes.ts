@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'closeup portrait of @me as a beautiful cyberpunk, dark and gritty, highly detailed, looking straight to camera, retro-futuristic style, neon lighting, cyberpunk city in the background, art by wlop, greg rutkowski, and charlie bowater, 8 k resolution, ultra-realistic, octane render, unreal engine.'
+			'original & realistic closeup portrait of @me as a anime, wearing iconic outfit and accesseories, looking straight into camera, behance hd by jesper ejsing, by rhads, makoto shinkai and lois van baarle, ilya kuvshinov, rossdraws global illumination'
 	}
 	
 ];
