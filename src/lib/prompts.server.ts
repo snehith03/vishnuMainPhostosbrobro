@@ -9,7 +9,7 @@ export function getSubjectName() {
 }
 
 export const getRefinedInstanceClass = (instanceClass: string | null) => {
-	return instanceClass === 'man' || instanceClass === 'woman' ? 'person' : instanceClass;
+	return instanceClass === 'man' ? 'male' : instanceClass === 'youngmale' ? 'youngmale' : instanceClass === 'youngfemale' ? 'youngfemale' : instanceClass === 'woman' ? 'female' : instanceClass;
 };
 
 export function getReplacedPrompt(prompt: string, instanceClass: string | null) {
