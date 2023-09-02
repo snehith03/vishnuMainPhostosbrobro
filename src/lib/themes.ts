@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'realistic closeup portrait of @me as a stylish fashion designer. Rich ethnic fashion heritage, looking straight into camera, creative dark background, dark lighting, intricate textiles, fusion styles. Art by Marko Djurdjevic, Greg Rutkowski, Wlop, Fred Perry, Digital Painting, Rossdraws.'
+			'realistic closeup portrait of @me as a gamer, Detailed facial features, looking straight into camera, creative retro background, gaming headphones. Art by Marko Djurdjevic, Greg Rutkowski, Wlop, Fred Perry, Digital Painting, Rossdraws'
 	}
 	
 ];
