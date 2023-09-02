@@ -590,7 +590,7 @@
 
 <!-- Move to component -->
 
-{#if !userInfo.trained && !userInfo.in_training}
+{#if userInfo.trained && !userInfo.in_training}
 <div class="form-control w-full max-w-xs">
   <label class="label">
     <span class="label-text text-inherit">Choose the style</span>
