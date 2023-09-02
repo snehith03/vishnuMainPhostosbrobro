@@ -583,7 +583,7 @@
 						<option value="young man">Young Male</option>
 						<option value="person">Male</option>
 						<option value="young woman">Young Female</option>
-						<option value="woman">Female</option>
+						<option value="person">Female</option>
 					</select>
 				</div>
 			{/if}
