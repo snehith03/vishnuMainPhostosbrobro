@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'8k linkedin realistic closeup portrait of @me in a suit with studio lighting, bokeh, corporate portrait photograph, best corporate photography photo winner, looking to camera, centred uncropped, meticulous detail, hyperrealistic'
+			'realistic closeup portrait of @me as a jedi , highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
 	}
 	
 ];
