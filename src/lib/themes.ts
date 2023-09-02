@@ -17,7 +17,7 @@ export const prompts: Theme[] = [
 		name: 'Jedi',
 		instance_classes: [],
 		prompt:
-			'original & realistic closeup portrait of @me as a anime, wearing iconic outfit and accesseories, looking straight into camera, behance hd by jesper ejsing, by rhads, makoto shinkai and lois van baarle, ilya kuvshinov, rossdraws global illumination'
+			'realistic highly detailed illustration closeup portrait of @me as cowgirl wearing black cowboy hat, looking straight into camera, dramatic wielding gun pose, original face, intricate, elegant, highly detailed, centered, digital painting, artstation, concept art, smooth, sharp focus, league of legends concept art, wlop'
 	}
 	
 ];
