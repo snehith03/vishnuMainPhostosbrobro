@@ -599,7 +599,6 @@ async function prediction() {
 				</div>
 			{/if}
 
-<!-- Move to component -->
 {#if !userInfo.trained && !userInfo.in_training}
 <div class="form-control w-full max-w-xs">
   <label class="label">
@@ -611,10 +610,9 @@ async function prediction() {
     use:clickoutside
     on:clickoutside={() => (themeOpen = false)}
   >
-    <!-- Use a <select> element with the "multiple" attribute for multi-select -->
     <select
-      multiple 
-      bind:value={selectedThemes} <!-- Bind selected themes to an array -->
+      multiple
+      bind:value={selectedThemes}
       class="w-full input input-bordered"
       readonly
       on:focus={() => {
@@ -633,7 +631,6 @@ async function prediction() {
               class="relative cursor-pointer text-center"
               style="background-color: black;"
               on:click={() => {
-                // You can handle the selected themes here, e.g., push to selectedThemes array
                 selectedThemes.push(name);
                 themeOpen = false;
               }}
@@ -654,6 +651,7 @@ async function prediction() {
   </div>
 </div>
 {/if}
+
 
 
 			<div class="divider -mb-2"></div>
