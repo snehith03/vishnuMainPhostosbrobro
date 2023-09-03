@@ -112,7 +112,7 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
     const negativePrompt = getNegativePrompt();
     console.log({ theme, negativePrompt, seed });
 
-    const quantity = 1; // Generate one image at a time
+    const quantity = 50; // Generate one image at a time
 
     const prompts = [ // Array of prompts to choose from
         "Create a beautiful sunset landscape",
