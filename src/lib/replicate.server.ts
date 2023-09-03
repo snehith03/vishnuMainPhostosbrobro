@@ -142,7 +142,7 @@ export async function runPrediction(
 		path: '/v1/predictions',
 		body: {
 			input: {
-				prompt,
+				prompt : 'a photo of @me',
 				negative_prompt: negativePrompt,
 				...(seed && !isNaN(parseInt(seed)) ? { seed: parseInt(seed) } : {}),
 				disable_safety_check: true
@@ -153,3 +153,4 @@ export async function runPrediction(
 		method: 'POST'
 	});
 }
+
