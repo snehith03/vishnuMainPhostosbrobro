@@ -61,8 +61,12 @@ export const prompts: Theme[] = [
 		prompt:
 			'closeup portrait of @me as a cyborg, mechanical parts, ultra realistic, concept art, intricate details, eerie, highly detailed, photorealistic, 8k, unreal engine. art by artgerm and greg rutkowski and charlie bowater and magali villeneuve and alphonse mucha, golden hour, cyberpunk, robotic, steampunk, neon colors, metallic textures.'
 	},
-	
-	
+	{
+		name: 'cyborg',
+		instance_classes: [InstanceClass.man, InstanceClass.woman, InstanceClass.couple],
+		prompt:
+			'8k linkedin realistic closeup portrait of @me in a suit with studio lighting, bokeh, corporate portrait photograph, best corporate photography photo winner, looking to camera, centred uncropped, meticulous detail, hyperrealistic.'
+	}
 ];
 
 export const getThemes = (instanceClass: string | null) =>
