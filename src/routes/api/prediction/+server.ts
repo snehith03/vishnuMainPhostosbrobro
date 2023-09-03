@@ -112,7 +112,6 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
 
 const prompts = [
     "realistic closeup portrait of @me as a jedi , highly detailed, science fiction, looking into camera, uncropped face, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "closeup portrait of @me as a astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, looking into camera, uncropped face, art by alphonse mucha, ryan kittleson, greg rutkowski, leesha hannigan, stephan martiniere, stanley artgerm lau.",
     "realistic closeup portrait of @me as a superhero, dynamic lighting, intense colors, looking into camera, uncropped face, detailed costume, artstation trending, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws, Sharp focus, dslr photo, HD, UHD, 8K.",
 	"closeup portrait of @me as a cyberpunk blade runner, dramatic pose, wearing japanese techwear, looking into camera, uncropped face, intricate complexity, concept art, by ismail inceoglu dragan bibin hans thoma greg rutkowski alexandros pyromallis nekro rene maritte illustrated",
 ];
