@@ -112,10 +112,10 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
 
 const prompts = [
     "realistic closeup portrait of @me as a jedi , highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "realistic closeup portrait of @me as a astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel, art by alphonse mucha, ryan kittleson, greg rutkowski, leesha hannigan, stephan martiniere, stanley artgerm lau.",
+    "closeup portrait of @me as a astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, uncropped face, art by alphonse mucha, ryan kittleson, greg rutkowski, leesha hannigan, stephan martiniere, stanley artgerm lau.",
     "realistic closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws, Sharp focus, dslr photo, HD, UHD, 8K.",
-"8k linkedin realistic closeup portrait of @me in a suit with studio lighting, bokeh, corporate portrait photograph, best corporate photography photo winner, looking to camera, centred uncropped, meticulous detail, hyperrealistic.",
-	"closeup portrait of @me as a cyberpunk blade runner, dramatic pose, wearing japanese techwear, looking into camera, uncropped face, detailed symmetrical, intricate complexity, concept art, by ismail inceoglu dragan bibin hans thoma greg rutkowski alexandros pyromallis nekro rene maritte illustrated",
+"8k linkedin realistic closeup portrait of @me in a suit with studio lighting, bokeh, corporate portrait photograph, best corporate photography photo winner, looking to camera, uncropped face, meticulous detail, hyperrealistic.",
+	"closeup portrait of @me as a cyberpunk blade runner, dramatic pose, wearing japanese techwear, uncropped face, detailed symmetrical, intricate complexity, concept art, by ismail inceoglu dragan bibin hans thoma greg rutkowski alexandros pyromallis nekro rene maritte illustrated",
 ];
 
 
