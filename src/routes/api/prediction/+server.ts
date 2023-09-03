@@ -92,140 +92,115 @@ export const GET: RequestHandler = async (event) => {
 		throw svelteError(500);
 	}
 };
-
 export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserInfo) => {
-	let { theme, quantity, prompt, seed } = payload;
-	if (theme) {
-		prompt = getPrompt(theme);
-	}
-	if (!prompt) {
-		throw new Error('Theme not selected');
-	}
+    let { theme, seed } = payload;
+    if (theme) {
+        theme = getPrompt(theme);
+    }
+    if (!theme) {
+        throw new Error('Theme not selected');
+    }
 
-	if (!userInfo.paid) {
-		throw new Error('Payment required');
-	}
+    if (!userInfo.paid) {
+        throw new Error('Payment required');
+    }
 
-	if (userInfo.in_training || !userInfo.trained || !userInfo.replicate_version_id) {
-		throw new Error('Model not trained');
-	}
+    if (userInfo.in_training || !userInfo.trained || !userInfo.replicate_version_id) {
+        throw new Error('Model not trained');
+    }
 
-	const negativePrompt = getNegativePrompt();
-	console.log({ prompt, negativePrompt, seed });
+    const negativePrompt = getNegativePrompt();
+    console.log({ theme, negativePrompt, seed });
 
-	if (typeof quantity == 'string') {
-		quantity = parseInt(quantity);
-		if (isNaN(quantity)) {
-			throw new Error('Wrong quantity');
-		}
-	}
-	quantity = getLimitedQuantity(quantity || 1);
-	const quantityLimit = 50;
-	if (quantity > quantityLimit - userInfo.counter) {
-		if (quantityLimit - userInfo.counter > 0) {
-			quantity = quantityLimit - userInfo.counter;
-		} else {
-			throw new Error('You have already generated 50 photos');
-		}
-	}
+    const quantity = 1; // Generate one image at a time
 
-	const promises: Promise<PostgrestResponse<undefined>>[] = [];
-	for (let i = 0; i < quantity; i++) {
-		promises.push(
-			runPrediction(
-				userInfo.replicate_version_id,
-				getReplacedPrompt(prompt, userInfo.instance_class),
-				negativePrompt,
-				seed,
-				userInfo.id
-			).then((predictionResponse) => {
-				console.log('Predict response', predictionResponse);
-				return supabaseClientAdmin.from('predictions').insert({
-					id: predictionResponse.id,
-					user_id: userInfo.id,
-					status: predictionResponse.status
-				});
-			})
-		);
-	}
+    const prompts = [ // Array of prompts to choose from
+        "Create a beautiful sunset landscape",
+        "Design a futuristic cityscape",
+        "Paint a serene forest scene",
+        // Add more prompts as needed
+    ];
 
-	await Promise.all(promises)
-		.then((responses) => {
-			for (let i = 0; i < responses.length; i++) {
-				if (responses[i].error) {
-					throw new Error('Error on insert prediction', {
-						cause: responses[i].error
-					});
-				}
-			}
-		})
-		.catch((err) => {
-			throw new Error('Error on insert prediction', { cause: err });
-		});
+    const promises: Promise<PostgrestResponse<undefined>>[] = [];
+    for (let i = 0; i < quantity; i++) {
+        // Randomly select a prompt from the array
+        const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
 
-	handleError(
-		await supabaseClientAdmin
-			.from('user_info')
-			.update({
-				counter: userInfo.counter + quantity
-			})
-			.eq('id', userInfo.id)
-	);
+        promises.push(
+            runPrediction(
+                userInfo.replicate_version_id,
+                getReplacedPrompt(randomPrompt, userInfo.instance_class),
+                negativePrompt,
+                seed,
+                userInfo.id
+            ).then((predictionResponse) => {
+                console.log('Predict response', predictionResponse);
+                return supabaseClientAdmin.from('predictions').insert({
+                    id: predictionResponse.id,
+                    user_id: userInfo.id,
+                    status: predictionResponse.status
+                });
+            })
+        );
+    }
+
+    await Promise.all(promises)
+        .then((responses) => {
+            for (let i = 0; i < responses.length; i++) {
+                if (responses[i].error) {
+                    throw new Error('Error on insert prediction', {
+                        cause: responses[i].error
+                    });
+                }
+            }
+        })
+        .catch((err) => {
+            throw new Error('Error on insert prediction', { cause: err });
+        });
+
+    await supabaseClientAdmin
+        .from('user_info')
+        .update({
+            counter: userInfo.counter + quantity
+        })
+        .eq('id', userInfo.id);
 };
+
 
 export const POST: RequestHandler = async (event) => {
-    try {
-        const body = (await event.request.json()) as GeneratePayload;
-        const { theme, seed } = body;
-        let { quantity = 1 } = body;
+	try {
+		const body = (await event.request.json()) as GeneratePayload;
+		const { theme, seed } = body;
+		let { prompt, quantity = 1 } = body;
 
-        const { session } = await getSupabase(event);
+		const { session } = await getSupabase(event);
 
-        if (!session) {
-            throw new Error('Session not valid');
-        }
+		if (!session) {
+			throw new Error('Session not valid');
+		}
 
-        const user = session.user;
-        console.log('user', user);
+		const user = session.user;
+		console.log('user', user);
 
-        const userInfo = await getAdminUserInfo(session.user.id, supabaseClientAdmin);
+		const userInfo = await getAdminUserInfo(session.user.id, supabaseClientAdmin);
 
-        const prompts = [   "Create a beautiful sunset landscape",
-    "Design a futuristic cityscape",
-    "Paint a serene forest scene",
-    "Generate an abstract art piece with vibrant colors",
-    "Illustrate a mythical creature in a magical forest",
-    "Render a realistic portrait of a person",
-    "Imagine a surreal underwater world",
-    "Craft a steampunk-inspired mechanical device",
-    "Compose a cozy and rustic countryside scene",
-    "Visualize a cyberpunk city at night"]; // Array to store different prompts
-        for (let i = 0; i < quantity; i++) {
-            const prompt = getPrompt(theme); // Get a prompt for each image
-            prompts.push(prompt);
-        }
+		await _generatePhotos(
+			{
+				theme,
+				seed,
+				prompt,
+				quantity
+			},
+			userInfo
+		);
 
-        // Generate images with different prompts
-        for (let i = 0; i < quantity; i++) {
-            await _generatePhotos(
-                {
-                    theme,
-                    seed,
-                    prompt: prompts[i], // Use the corresponding prompt from the array
-                    quantity: 1 // Generate one image at a time
-                },
-                userInfo
-            );
-        }
-
-        return json({ done: true });
-    } catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-            console.error(error.cause);
-            throw svelteError(500, { message: error.message });
-        }
-        throw svelteError(500);
-    }
+		return json({ done: true });
+	} catch (error) {
+		console.error(error);
+		if (error instanceof Error) {
+			console.error(error.cause);
+			throw svelteError(500, { message: error.message });
+		}
+		throw svelteError(500);
+	}
 };
-
