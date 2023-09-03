@@ -14,7 +14,7 @@ export interface Theme {
 
 export const prompts: Theme[] = [
 	{
-		name: 'Jedi',
+		name: 'Profile Pic',
 		instance_classes: [],
 		prompt:
 			'8k linkedin realistic closeup portrait of @me in a suit with studio lighting, bokeh, corporate portrait photograph, best corporate photography photo winner, looking to camera, centred uncropped, meticulous detail, hyperrealistic.'
