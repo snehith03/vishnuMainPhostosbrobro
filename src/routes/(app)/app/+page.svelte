@@ -588,7 +588,7 @@
 				</div>
 			{/if}
 
-<!-- Move to component -->
+<!-- Move to component 
 
 {#if !userInfo.trained && !userInfo.in_training}
 <div class="form-control w-full max-w-xs">
@@ -637,6 +637,7 @@
   </div>
 </div>
 {/if}
+-->
 
 			<div class="divider -mb-2"></div>
 
