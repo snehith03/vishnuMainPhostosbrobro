@@ -115,6 +115,7 @@ const prompts = [
     "realistic closeup portrait of @me as a astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel, art by alphonse mucha, ryan kittleson, greg rutkowski, leesha hannigan, stephan martiniere, stanley artgerm lau.",
     "realistic closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws, Sharp focus, dslr photo, HD, UHD, 8K.",
 "8k linkedin realistic closeup portrait of @me in a suit with studio lighting, bokeh, corporate portrait photograph, best corporate photography photo winner, looking to camera, centred uncropped, meticulous detail, hyperrealistic.",
+	"closeup portrait of @me as a cyberpunk blade runner, dramatic pose, wearing japanese techwear, looking into camera, uncropped face, detailed symmetrical, intricate complexity, concept art, by ismail inceoglu dragan bibin hans thoma greg rutkowski alexandros pyromallis nekro rene maritte illustrated",
 ];
 
 
