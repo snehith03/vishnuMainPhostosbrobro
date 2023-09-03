@@ -631,7 +631,13 @@ async function prediction() {
               class="relative cursor-pointer text-center"
               style="background-color: black;"
               on:click={() => {
-                selectedThemes.push(name);
+                if (selectedThemes.includes(name)) {
+                  // If theme is already selected, remove it
+                  selectedThemes = selectedThemes.filter(theme => theme !== name);
+                } else {
+                  // If theme is not selected, add it
+                  selectedThemes = [...selectedThemes, name];
+                }
                 themeOpen = false;
               }}
             >
