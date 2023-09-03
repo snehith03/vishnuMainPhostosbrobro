@@ -600,26 +600,7 @@ async function prediction() {
 			{/if}
 
 <!-- Move to component -->
-
-{#if userInfo.trained && !userInfo.in_training}
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text text-inherit">Choose the style</span>
-  </label>
-  <div
-    class:popup-open={themeOpen}
-    use:clickoutside
-    on:clickoutside={() => (themeOpen = false)}
-  >
-    <input
-      bind:value={theme}
-      class="w-full input input-bordered"
-      readonly
-      on:focus={() => {
-        themeOpen = true;
-      }}
-    />
- <!-- Replace the single select input with a multi-select input -->
+{#if !userInfo.trained && !userInfo.in_training}
 <div class="form-control w-full max-w-xs">
   <label class="label">
     <span class="label-text text-inherit">Choose the style</span>
@@ -630,6 +611,7 @@ async function prediction() {
     use:clickoutside
     on:clickoutside={() => (themeOpen = false)}
   >
+    <!-- Use a <select> element with the "multiple" attribute for multi-select -->
     <select
       multiple  <!-- Allow multiple selections -->
       bind:value={selectedThemes} <!-- Bind selected themes to an array -->
@@ -644,35 +626,34 @@ async function prediction() {
       {/each}
     </select>
     {#if themeOpen}
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
-      <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-96 max-h-80 overflow-y-auto grid gap-4 grid-cols-2">
-        {#each getThemes(instanceClass) as { name }}
-          <div
-            class="relative cursor-pointer text-center"
-            style="background-color: black;"
-            on:click={() => {
-              theme = name;
-              themeOpen = false;
-            }}
-          >
-            <img
-              class="h-40 w-full rounded-lg object-cover"
-              src={`AIStyles/${name}.png`}
-              alt="Style Avatar"
-            />
-            <div class="p-2 bg-black bg-opacity-50 rounded-lg">
-              <p class="text-white font-semibold">{name}</p>
+      <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
+        <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-96 max-h-80 overflow-y-auto grid gap-4 grid-cols-2">
+          {#each getThemes(instanceClass) as { name }}
+            <div
+              class="relative cursor-pointer text-center"
+              style="background-color: black;"
+              on:click={() => {
+                // You can handle the selected themes here, e.g., push to selectedThemes array
+                selectedThemes.push(name);
+                themeOpen = false;
+              }}
+            >
+              <img
+                class="h-40 w-full rounded-lg object-cover"
+                src={`AIStyles/${name}.png`}
+                alt="Style Avatar"
+              />
+              <div class="p-2 bg-black bg-opacity-50 rounded-lg">
+                <p class="text-white font-semibold">{name}</p>
+              </div>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </div>
       </div>
-    </div>
-  {/if}
-</div>
-</div>
-{/if}
+    {/if}
   </div>
 </div>
+{/if}
 
 
 			<div class="divider -mb-2"></div>
