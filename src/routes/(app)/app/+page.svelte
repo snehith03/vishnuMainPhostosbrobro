@@ -607,7 +607,6 @@ async function prediction() {
     <span class="label-text text-inherit">Choose the style</span>
   </label>
   <div
-    class="relative w-full"
     class:popup-open={themeOpen}
     use:clickoutside
     on:clickoutside={() => (themeOpen = false)}
