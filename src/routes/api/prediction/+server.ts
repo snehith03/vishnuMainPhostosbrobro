@@ -98,10 +98,6 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
   if (!themes || themes.length === 0) {
     throw new Error('Themes not selected');
   }
-  if (!prompt) {
-    throw new Error('Theme not selected');
-}
-
 if (!userInfo.paid) {
     throw new Error('Payment required');
 }
