@@ -74,8 +74,8 @@
 									width: 512,
 									height: 512,
 									resize: 'cover',
-									quality: 0.9,
-									strict: true,
+									quality: 1,
+									strict: false,
 									error(error) {
 										showError(error);
 										reject();
@@ -136,7 +136,7 @@
 		}
 	}
 	async function prediction() {
-		if (theme && prompt) {
+		if (!theme && !prompt) {
 			showError('Theme not selected');
 		} else if (userInfo.counter < 110){
 			try {
@@ -588,7 +588,7 @@
 				</div>
 			{/if}
 
-<!-- Move to component 
+<!-- Move to component -->
 
 {#if !userInfo.trained && !userInfo.in_training}
 <div class="form-control w-full max-w-xs">
@@ -637,11 +637,10 @@
   </div>
 </div>
 {/if}
--->
 
 			<div class="divider -mb-2"></div>
 
-			{#if userInfo.trained}
+			{#if !userInfo.trained && userInfo.counter > 50}
 				<Button
 					size="small"
 					type="button"
