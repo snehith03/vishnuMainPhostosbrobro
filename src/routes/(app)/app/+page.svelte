@@ -53,6 +53,8 @@
 
 	let instanceClass = '';
 	let theme = '';
+	let selectedThemes = [];
+
 	let prompt = '';
 	let seed = '';
 	let quantity = 50;
@@ -135,30 +137,39 @@
 			showError(error);
 		}
 	}
-	async function prediction() {
-		if (!theme && !prompt) {
-			showError('Theme not selected');
-		} else if (userInfo.counter < 110){
-			try {
-				generating = true;
-				const response = await fetch('/api/prediction', {
-					body: JSON.stringify({ theme, prompt, seed, quantity }),
-					method: 'POST',
-					headers: {
-						'content-type': 'application/json'
-					}
-				});
-				if (!response.ok) {
-					throw (await response.json()).message;
-				}
-				updateUserInfo();
-			} catch (error) {
-				showError(error);
-			} finally {
-				generating = false;
-			}
-		}
-	}
+async function prediction() {
+  if (!selectedThemes.length || !userInfo.paid || userInfo.counter >= 110) {
+    showError('Invalid selection or limit reached');
+    return;
+  }
+
+  try {
+    generating = true;
+    const response = await fetch('/api/prediction', {
+      body: JSON.stringify({
+        themes: selectedThemes, // Pass an array of selected themes
+        prompt,
+        seed,
+        quantity
+      }),
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw (await response.json()).message;
+    }
+
+    updateUserInfo();
+  } catch (error) {
+    showError(error);
+  } finally {
+    generating = false;
+  }
+}
+
 
 	async function getSignedUrl(bucket: string, filename: string, thumbnail = true) {
 		return handleErrorAndGetData(
@@ -609,34 +620,61 @@
         themeOpen = true;
       }}
     />
+ <!-- Replace the single select input with a multi-select input -->
+<div class="form-control w-full max-w-xs">
+  <label class="label">
+    <span class="label-text text-inherit">Choose the style</span>
+  </label>
+  <div
+    class="relative w-full"
+    class:popup-open={themeOpen}
+    use:clickoutside
+    on:clickoutside={() => (themeOpen = false)}
+  >
+    <select
+      multiple  <!-- Allow multiple selections -->
+      bind:value={selectedThemes} <!-- Bind selected themes to an array -->
+      class="w-full input input-bordered"
+      readonly
+      on:focus={() => {
+        themeOpen = true;
+      }}
+    >
+      {#each getThemes(instanceClass) as { name }}
+        <option value={name}>{name}</option>
+      {/each}
+    </select>
     {#if themeOpen}
-      <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
-        <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-96 max-h-80 overflow-y-auto grid gap-4 grid-cols-2">
-          {#each getThemes(instanceClass) as { name }}
-            <div
-              class="relative cursor-pointer text-center"
-              style="background-color: black;"
-              on:click={() => {
-                theme = name;
-                themeOpen = false;
-              }}
-            >
-              <img
-                class="h-40 w-full rounded-lg object-cover"
-                src={`AIStyles/${name}.png`}
-                alt="Style Avatar"
-              />
-              <div class="p-2 bg-black bg-opacity-50 rounded-lg">
-                <p class="text-white font-semibold">{name}</p>
-              </div>
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
+      <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-96 max-h-80 overflow-y-auto grid gap-4 grid-cols-2">
+        {#each getThemes(instanceClass) as { name }}
+          <div
+            class="relative cursor-pointer text-center"
+            style="background-color: black;"
+            on:click={() => {
+              theme = name;
+              themeOpen = false;
+            }}
+          >
+            <img
+              class="h-40 w-full rounded-lg object-cover"
+              src={`AIStyles/${name}.png`}
+              alt="Style Avatar"
+            />
+            <div class="p-2 bg-black bg-opacity-50 rounded-lg">
+              <p class="text-white font-semibold">{name}</p>
             </div>
-          {/each}
-        </div>
+          </div>
+        {/each}
       </div>
-    {/if}
-  </div>
+    </div>
+  {/if}
+</div>
 </div>
 {/if}
+  </div>
+</div>
+
 
 			<div class="divider -mb-2"></div>
 
