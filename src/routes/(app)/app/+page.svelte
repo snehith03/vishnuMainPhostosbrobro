@@ -613,7 +613,7 @@ async function prediction() {
   >
     <!-- Use a <select> element with the "multiple" attribute for multi-select -->
     <select
-      multiple  <!-- Allow multiple selections -->
+      multiple 
       bind:value={selectedThemes} <!-- Bind selected themes to an array -->
       class="w-full input input-bordered"
       readonly
