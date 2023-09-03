@@ -174,39 +174,58 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
 };
 
 export const POST: RequestHandler = async (event) => {
-	try {
-		const body = (await event.request.json()) as GeneratePayload;
-		const { theme, seed } = body;
-		let { prompt, quantity = 1 } = body;
+    try {
+        const body = (await event.request.json()) as GeneratePayload;
+        const { theme, seed } = body;
+        let { quantity = 1 } = body;
 
-		const { session } = await getSupabase(event);
+        const { session } = await getSupabase(event);
 
-		if (!session) {
-			throw new Error('Session not valid');
-		}
+        if (!session) {
+            throw new Error('Session not valid');
+        }
 
-		const user = session.user;
-		console.log('user', user);
+        const user = session.user;
+        console.log('user', user);
 
-		const userInfo = await getAdminUserInfo(session.user.id, supabaseClientAdmin);
+        const userInfo = await getAdminUserInfo(session.user.id, supabaseClientAdmin);
 
-		await _generatePhotos(
-			{
-				theme,
-				seed,
-				prompt,
-				quantity
-			},
-			userInfo
-		);
+        const prompts = [   "Create a beautiful sunset landscape",
+    "Design a futuristic cityscape",
+    "Paint a serene forest scene",
+    "Generate an abstract art piece with vibrant colors",
+    "Illustrate a mythical creature in a magical forest",
+    "Render a realistic portrait of a person",
+    "Imagine a surreal underwater world",
+    "Craft a steampunk-inspired mechanical device",
+    "Compose a cozy and rustic countryside scene",
+    "Visualize a cyberpunk city at night"]; // Array to store different prompts
+        for (let i = 0; i < quantity; i++) {
+            const prompt = getPrompt(theme); // Get a prompt for each image
+            prompts.push(prompt);
+        }
 
-		return json({ done: true });
-	} catch (error) {
-		console.error(error);
-		if (error instanceof Error) {
-			console.error(error.cause);
-			throw svelteError(500, { message: error.message });
-		}
-		throw svelteError(500);
-	}
+        // Generate images with different prompts
+        for (let i = 0; i < quantity; i++) {
+            await _generatePhotos(
+                {
+                    theme,
+                    seed,
+                    prompt: prompts[i], // Use the corresponding prompt from the array
+                    quantity: 1 // Generate one image at a time
+                },
+                userInfo
+            );
+        }
+
+        return json({ done: true });
+    } catch (error) {
+        console.error(error);
+        if (error instanceof Error) {
+            console.error(error.cause);
+            throw svelteError(500, { message: error.message });
+        }
+        throw svelteError(500);
+    }
 };
+
