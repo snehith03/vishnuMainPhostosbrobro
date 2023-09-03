@@ -47,7 +47,7 @@ export const prompts: Theme[] = [
 		name: 'superhero',
 		instance_classes: [InstanceClass.man, InstanceClass.woman, InstanceClass.couple],
 		prompt:
-			'closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending, art by alphonse mucha, greg rutkowski, ross tran, leesha hannigan, ignacio fernandez rios, kai carpenter, noir photorealism, film'
+			'closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws, Sharp focus, dslr photo, HD, UHD, 8K.'
 	},
 	{
 		name: 'knight',
