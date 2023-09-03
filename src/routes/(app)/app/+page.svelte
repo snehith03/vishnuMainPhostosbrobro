@@ -53,8 +53,6 @@
 
 	let instanceClass = '';
 	let theme = '';
-	let selectedThemes = [];
-
 	let prompt = '';
 	let seed = '';
 	let quantity = 50;
@@ -137,39 +135,30 @@
 			showError(error);
 		}
 	}
-async function prediction() {
-  if (!selectedThemes.length || !userInfo.paid || userInfo.counter >= 110) {
-    showError('Invalid selection or limit reached');
-    return;
-  }
-
-  try {
-    generating = true;
-    const response = await fetch('/api/prediction', {
-      body: JSON.stringify({
-        themes: selectedThemes, // Pass an array of selected themes
-        prompt,
-        seed,
-        quantity
-      }),
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw (await response.json()).message;
-    }
-
-    updateUserInfo();
-  } catch (error) {
-    showError(error);
-  } finally {
-    generating = false;
-  }
-}
-
+	async function prediction() {
+		if (!theme && !prompt) {
+			showError('Theme not selected');
+		} else if (userInfo.counter < 110){
+			try {
+				generating = true;
+				const response = await fetch('/api/prediction', {
+					body: JSON.stringify({ theme, prompt, seed, quantity }),
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json'
+					}
+				});
+				if (!response.ok) {
+					throw (await response.json()).message;
+				}
+				updateUserInfo();
+			} catch (error) {
+				showError(error);
+			} finally {
+				generating = false;
+			}
+		}
+	}
 
 	async function getSignedUrl(bucket: string, filename: string, thumbnail = true) {
 		return handleErrorAndGetData(
@@ -599,6 +588,8 @@ async function prediction() {
 				</div>
 			{/if}
 
+<!-- Move to component -->
+
 {#if userInfo.trained && !userInfo.in_training}
 <div class="form-control w-full max-w-xs">
   <label class="label">
@@ -610,19 +601,14 @@ async function prediction() {
     use:clickoutside
     on:clickoutside={() => (themeOpen = false)}
   >
-    <select
-      multiple
-      bind:value={selectedThemes}
+    <input
+      bind:value={theme}
       class="w-full input input-bordered"
       readonly
       on:focus={() => {
         themeOpen = true;
       }}
-    >
-      {#each getThemes(instanceClass) as { name }}
-        <option value={name}>{name}</option>
-      {/each}
-    </select>
+    />
     {#if themeOpen}
       <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
         <div class="bg-gray-900 p-4 rounded-lg shadow-lg w-96 max-h-80 overflow-y-auto grid gap-4 grid-cols-2">
@@ -631,13 +617,7 @@ async function prediction() {
               class="relative cursor-pointer text-center"
               style="background-color: black;"
               on:click={() => {
-                if (selectedThemes.includes(name)) {
-                  // If theme is already selected, remove it
-                  selectedThemes = selectedThemes.filter(theme => theme !== name);
-                } else {
-                  // If theme is not selected, add it
-                  selectedThemes = [...selectedThemes, name];
-                }
+                theme = name;
                 themeOpen = false;
               }}
             >
@@ -657,8 +637,6 @@ async function prediction() {
   </div>
 </div>
 {/if}
-
-
 
 			<div class="divider -mb-2"></div>
 

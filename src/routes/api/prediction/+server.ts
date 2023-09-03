@@ -11,10 +11,10 @@ import { getLimitedQuantity } from '$lib/predictions.server';
 import Replicate from 'replicate';
 
 interface GeneratePayload {
-  themes: string[]; // Change this to an array of themes
-  prompt: string | undefined;
-  seed: string | undefined;
-  quantity: number | string | undefined;
+	theme: string | undefined;
+	prompt: string | undefined;
+	seed: string | undefined;
+	quantity: number | string | undefined;
 }
 
 export const GET: RequestHandler = async (event) => {
@@ -94,61 +94,62 @@ export const GET: RequestHandler = async (event) => {
 };
 
 export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserInfo) => {
-  let { themes, quantity, prompt, seed } = payload;
-  if (!themes || themes.length === 0) {
-    throw new Error('Themes not selected');
-  }
-if (!userInfo.paid) {
-    throw new Error('Payment required');
-}
+	let { theme, quantity, prompt, seed } = payload;
+	if (theme) {
+		prompt = getPrompt(theme);
+	}
+	if (!prompt) {
+		throw new Error('Theme not selected');
+	}
 
-if (userInfo.in_training || !userInfo.trained || !userInfo.replicate_version_id) {
-    throw new Error('Model not trained');
-}
+	if (!userInfo.paid) {
+		throw new Error('Payment required');
+	}
 
+	if (userInfo.in_training || !userInfo.trained || !userInfo.replicate_version_id) {
+		throw new Error('Model not trained');
+	}
 
-  const negativePrompt = getNegativePrompt();
-  console.log({ prompt, negativePrompt, seed });
+	const negativePrompt = getNegativePrompt();
+	console.log({ prompt, negativePrompt, seed });
 
-  if (typeof quantity == 'string') {
-    quantity = parseInt(quantity);
-    if (isNaN(quantity)) {
-      throw new Error('Wrong quantity');
-    }
-  }
-  quantity = getLimitedQuantity(quantity || 1);
-  const quantityLimit = 50;
-  if (quantity > quantityLimit - userInfo.counter) {
-    if (quantityLimit - userInfo.counter > 0) {
-      quantity = quantityLimit - userInfo.counter;
-    } else {
-      throw new Error('You have already generated 50 photos');
-    }
-  }
+	if (typeof quantity == 'string') {
+		quantity = parseInt(quantity);
+		if (isNaN(quantity)) {
+			throw new Error('Wrong quantity');
+		}
+	}
+	quantity = getLimitedQuantity(quantity || 1);
+	const quantityLimit = 50;
+	if (quantity > quantityLimit - userInfo.counter) {
+		if (quantityLimit - userInfo.counter > 0) {
+			quantity = quantityLimit - userInfo.counter;
+		} else {
+			throw new Error('You have already generated 50 photos');
+		}
+	}
 
-  const promises: Promise<PostgrestResponse<undefined>>[] = [];
-  for (const theme of themes) {
-    for (let i = 0; i < quantity; i++) {
-      promises.push(
-        runPrediction(
-          userInfo.replicate_version_id,
-          getReplacedPrompt(prompt, userInfo.instance_class),
-          negativePrompt,
-          seed,
-          userInfo.id
-        ).then((predictionResponse) => {
-          console.log('Predict response', predictionResponse);
-          return supabaseClientAdmin.from('predictions').insert({
-            id: predictionResponse.id,
-            user_id: userInfo.id,
-            status: predictionResponse.status,
-          });
-        })
-      );
-    }
-  }
+	const promises: Promise<PostgrestResponse<undefined>>[] = [];
+	for (let i = 0; i < quantity; i++) {
+		promises.push(
+			runPrediction(
+				userInfo.replicate_version_id,
+				getReplacedPrompt(prompt, userInfo.instance_class),
+				negativePrompt,
+				seed,
+				userInfo.id
+			).then((predictionResponse) => {
+				console.log('Predict response', predictionResponse);
+				return supabaseClientAdmin.from('predictions').insert({
+					id: predictionResponse.id,
+					user_id: userInfo.id,
+					status: predictionResponse.status
+				});
+			})
+		);
+	}
 
-  await Promise.all(promises)
+	await Promise.all(promises)
 		.then((responses) => {
 			for (let i = 0; i < responses.length; i++) {
 				if (responses[i].error) {
@@ -170,45 +171,42 @@ if (userInfo.in_training || !userInfo.trained || !userInfo.replicate_version_id)
 			})
 			.eq('id', userInfo.id)
 	);
-
 };
 
-
-
 export const POST: RequestHandler = async (event) => {
-  try {
-    const body = (await event.request.json()) as GeneratePayload;
-    const { themes, seed } = body;
-    let { prompt, quantity = 1 } = body;
+	try {
+		const body = (await event.request.json()) as GeneratePayload;
+		const { theme, seed } = body;
+		let { prompt, quantity = 1 } = body;
 
-    const { session } = await getSupabase(event);
+		const { session } = await getSupabase(event);
 
-    if (!session) {
-      throw new Error('Session not valid');
-    }
+		if (!session) {
+			throw new Error('Session not valid');
+		}
 
-    const user = session.user;
-    console.log('user', user);
+		const user = session.user;
+		console.log('user', user);
 
-    const userInfo = await getAdminUserInfo(session.user.id, supabaseClientAdmin);
+		const userInfo = await getAdminUserInfo(session.user.id, supabaseClientAdmin);
 
-    await _generatePhotos(
-      {
-        themes, // Use the themes array here
-        seed,
-        prompt,
-        quantity,
-      },
-      userInfo
-    );
+		await _generatePhotos(
+			{
+				theme,
+				seed,
+				prompt,
+				quantity
+			},
+			userInfo
+		);
 
-    return json({ done: true });
-  } catch (error) {
-    console.error(error);
-    if (error instanceof Error) {
-      console.error(error.cause);
-      throw svelteError(500, { message: error.message });
-    }
-    throw svelteError(500);
-  }
+		return json({ done: true });
+	} catch (error) {
+		console.error(error);
+		if (error instanceof Error) {
+			console.error(error.cause);
+			throw svelteError(500, { message: error.message });
+		}
+		throw svelteError(500);
+	}
 };
