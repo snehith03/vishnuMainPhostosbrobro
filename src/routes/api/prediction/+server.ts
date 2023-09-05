@@ -112,8 +112,8 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
 
 const prompts = [
     "realistic closeup portrait of @me as a jedi , highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	"closeup portrait of @me as a cyberpunk blade runner, dramatic pose, wearing japanese techwear, intricate complexity, concept art, by ismail inceoglu dragan bibin hans thoma greg rutkowski alexandros pyromallis nekro rene maritte illustrated",
-	"closeup portrait of @me as a officer, cyberpunk futuristic, neon, reflective puffy coat, by greg rutkowski alexandros pyromallis nekro rene margitte, concept art annotations, illustrated, fine details, realistic shaded",
+	"realistic closeup portrait of @me as a cyberpunk blade runner, dramatic pose, wearing japanese techwear, intricate complexity, concept art, by ismail inceoglu dragan bibin hans thoma greg rutkowski alexandros pyromallis nekro rene maritte illustrated",
+	"realistic closeup portrait of @me as a officer, cyberpunk futuristic, neon, reflective puffy coat, by greg rutkowski alexandros pyromallis nekro rene margitte, concept art annotations, illustrated, fine details, realistic shaded",
 ];
 
 
