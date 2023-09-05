@@ -145,7 +145,10 @@ export async function runPrediction(
 				prompt,
 				negative_prompt: negativePrompt,
 				...(seed && !isNaN(parseInt(seed)) ? { seed: parseInt(seed) } : {}),
-				disable_safety_check: true
+				disable_safety_check: true,
+				guidance_scale:10,
+				height:768
+				
 			},
 			webhook_completed: `${PUBLIC_WEBSITE_HOST}/api/webhooks/${userID}/prediction_complete`,
 			version
