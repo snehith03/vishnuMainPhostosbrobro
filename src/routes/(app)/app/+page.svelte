@@ -136,7 +136,7 @@
 		}
 	}
 	async function prediction() {
-		if (!theme && !prompt) {
+		if (theme && prompt) {
 			showError('Theme not selected');
 		} else if (userInfo.counter < 110){
 			try {
