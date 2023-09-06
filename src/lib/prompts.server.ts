@@ -1,7 +1,7 @@
 import { PRIVATE_REPLICATE_INSTANCE_TOKEN } from '$env/static/private';
 
 export function getNegativePrompt() {
-			return '(disfigured), (bad art), (deformed), (poorly drawn), (extra limbs), strange colours, blurry, boring, sketch, lacklustre, repetitive, cropped, hands';
+			return '(disfigured), (bad art), (deformed), (poorly drawn), (extra limbs), strange colours, blurry, boring, sketch, lacklustre, repetitive, cropped , closeup , looking side , teeth .';
 }
 
 export function getSubjectName() {
