@@ -117,7 +117,6 @@ const prompts = [
     "realistic closeup portrait of @me as an astronaut, futuristic, highly detailed, handsome face, ultra realistic, concept art, intricate textures, interstellar background, space travel, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
     "realistic closeup portrait of @me as an ninja, wearing a black hood and suit, handsome face, stealthy movements, dark night background, shadows and mist, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
 	 "realistic closeup portrait of @me as an Superhero , highly detailed, handsome face, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	"8k linkedin closeup potrait of @me wearing business suit , handsome face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
 	   "realistic closeup portrait of @me as an cyborg , handsome face, mechanical parts, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws."
 ];
 
