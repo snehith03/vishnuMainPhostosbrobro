@@ -111,14 +111,14 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
     const quantity = 50; // Generate one image at a time
 
 const prompts = [
-   "realistic closeup portrait of @me as an jedi , highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	"realistic closeup portrait of @me as an cyberpunk blade runner, dramatic pose, wearing japanese techwear, intricate complexity, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	"realistic closeup portrait of @me as an officer, cyberpunk futuristic, neon, reflective puffy coat, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "realistic closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "realistic closeup portrait of @me as an ninja, wearing a black hood and suit, stealthy movements, dark night background, shadows and mist, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	 "realistic closeup portrait of @me as an Superhero , highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "realistic closeup portrait of @me as an knight wearing a full suit of armor, intricate details, majestic and powerful, bright shining silver armor, matching blue cape, a golden crown, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	   "realistic closeup portrait of @me as an cyborg , mechanical parts, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws."
+   "realistic closeup portrait of @me as an jedi , handsome face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	"realistic closeup portrait of @me as an cyberpunk blade runner, handsome face, dramatic pose, wearing japanese techwear, intricate complexity, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	"realistic closeup portrait of @me as an officer, cyberpunk futuristic, neon, handsome face, reflective puffy coat, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+    "realistic closeup portrait of @me as an astronaut, futuristic, highly detailed, handsome face, ultra realistic, concept art, intricate textures, interstellar background, space travel, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+    "realistic closeup portrait of @me as an ninja, wearing a black hood and suit, handsome face, stealthy movements, dark night background, shadows and mist, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	 "realistic closeup portrait of @me as an Superhero , highly detailed, handsome face, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	"8k linkedin closeup potrait of @me wearing business suit , handsome face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	   "realistic closeup portrait of @me as an cyborg , handsome face, mechanical parts, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws."
 ];
 
 
