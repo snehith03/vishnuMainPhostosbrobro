@@ -111,13 +111,13 @@ export const _generatePhotos = async (payload: GeneratePayload, userInfo: UserIn
     const quantity = 50; // Generate one image at a time
 
 const prompts = [
-   "realistic passport portrait of @me as an jedi , handsome face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	"realistic passport portrait of @me as an cyberpunk blade runner, handsome face, dramatic pose, wearing japanese techwear, intricate complexity, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	"realistic passport portrait of @me as an officer, cyberpunk futuristic, neon, handsome face, reflective puffy coat, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "realistic passport portrait of @me as an astronaut, futuristic, highly detailed, handsome face, ultra realistic, concept art, intricate textures, interstellar background, space travel, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-    "realistic passport portrait of @me as an ninja, wearing a black hood and suit, handsome face, stealthy movements, dark night background, shadows and mist, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	 "realistic passport portrait of @me as an Superhero , highly detailed, handsome face, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
-	   "realistic passport portrait of @me as an cosmic hero , handsome face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws."
+   "realistic passport portrait of @me as an jedi , perfect face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	"realistic passport portrait of @me as an cyberpunk blade runner, perfect face, dramatic pose, wearing japanese techwear, intricate complexity, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	"realistic passport portrait of @me as an officer, cyberpunk futuristic, neon, perfect face, reflective puffy coat, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+    "realistic passport portrait of @me as an astronaut, futuristic, highly detailed, perfect face, ultra realistic, concept art, intricate textures, interstellar background, space travel, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+    "realistic passport portrait of @me as an ninja, wearing a black hood and suit, perfect face, stealthy movements, dark night background, shadows and mist, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	 "realistic passport portrait of @me as an Superhero , highly detailed, perfect face, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.",
+	   "realistic passport portrait of @me as an cosmic hero , perfect face, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws."
 ];
 
 
