@@ -416,7 +416,6 @@
 			{/if}
 			<div class="collapse-content flex flex-col items-center gap-4 overflow-hidden">
 				{#if !userInfo.trained && !userInfo.in_training}
-						<div class="flex flex-col">
 <div class="flex">
   <img src="1.jpeg" alt="Style Avatar">
   <img src="2.jpeg" alt="Style Avatar">
