@@ -416,13 +416,14 @@
 			{/if}
 			<div class="collapse-content flex flex-col items-center gap-4 overflow-hidden">
 				{#if !userInfo.trained && !userInfo.in_training}
+<img class="h-40 rounded-lg object-cover" src="1.jpeg" alt="Style Avatar">
+						<img class="h-40 rounded-lg object-cover" src="2.jpeg" alt="Style Avatar">
 					<form
 						on:submit|preventDefault={onUploadSubmit}
 						class="w-full flex flex-col items-center gap-4"
 					>
 						<Input bind:input={inputFiles} accept="image/*" type="file" name="photos" multiple />
-						<img class="h-40 w-full rounded-lg object-cover" src="1.jpeg" alt="Style Avatar">
-						<img class="h-40 w-full rounded-lg object-cover" src="2.jpeg" alt="Style Avatar">
+						
 
 						<p class="italic text-xs max-w-xs">
 							It is necessary to upload at least 15 photos (ideally at least a dozen) where your face
