@@ -416,8 +416,11 @@
 			{/if}
 			<div class="collapse-content flex flex-col items-center gap-4 overflow-hidden">
 				{#if !userInfo.trained && !userInfo.in_training}
-<img class="h-40 rounded-lg object-cover" src="1.jpeg" alt="Style Avatar">
-						<img class="h-40 rounded-lg object-cover" src="2.jpeg" alt="Style Avatar">
+						<div class="flex flex-col">
+  <img class="h-40 rounded-lg object-cover" src="1.jpeg" alt="Style Avatar">
+  <img class="h-40 rounded-lg object-cover" src="2.jpeg" alt="Style Avatar">
+</div>
+
 					<form
 						on:submit|preventDefault={onUploadSubmit}
 						class="w-full flex flex-col items-center gap-4"
