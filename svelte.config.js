@@ -13,6 +13,7 @@ const config = {
 			// (https://vercel.com/docs/concepts/functions/edge-functions)
 			// rather than serverless functions
 			edge: false,
+			maxDuration: 60,
 
 			// an array of dependencies that esbuild should treat
 			// as external when bundling functions
