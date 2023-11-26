@@ -12,7 +12,6 @@ const config = {
 			// if true, will deploy the app using edge functions
 			// (https://vercel.com/docs/concepts/functions/edge-functions)
 			// rather than serverless functions
-			edge: false,
 			maxDuration: 60,
 
 			// an array of dependencies that esbuild should treat
